@@ -117,9 +117,11 @@ dt[, `:=` (month = month(datetime_collision),
 ### E.FIRST MODEL ----------------------------------------------------------------
 
 
-dt[, liquidato_basso := fifelse(liquidato_basso == 'Si', 1, 0)]
+dt[, liquidato_basso := as.factor(fifelse(liquidato_basso == 'Si', 1, 0))]
 
-model_fast <- glm(liquidato_basso ~ denuncia_mittente + bareme_gest_1_mittente + bareme_gest_1_ricevente + denuncia_firme + denuncia_resp_totale_o_parziale + veicolo_gestionaria_da_ania +  month + year_gestionaria + residenza_gestionaria_da_ania,
+saveRDS(dt, file = here('data', 'clean', 'dt_mlr3.rds'))
+
+model_fast <- glm(liquidato_basso ~ denuncia_mittente + bareme_gest_1_mittente  + denuncia_firme + denuncia_resp_totale_o_parziale + veicolo_gestionaria_da_ania +  month + year_gestionaria + residenza_gestionaria_da_ania,
                   data = dt,
                   family = 'binomial')
 

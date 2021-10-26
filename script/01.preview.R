@@ -41,3 +41,11 @@ FN = sum(dt$FN) / total * 100
 ###$ TRUE NEGATIVE 79.5%
 ###$ FALSE POSITIVE 08.1%
 ###$ FALSE NEGATIVE 9.22%
+
+P = sum(dt$FP) + sum(dt$TP)
+TP_P = sum(dt$TP) 
+
+N = sum(dt$FN) + sum(dt$TN)
+TN_N = sum(dt$TN)
+
+ACC = (TP_P + TN_N) / nrow(dt)
